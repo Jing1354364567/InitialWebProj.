@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS Plunker</title>
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <link rel="stylesheet" href="style.css" />
+    <script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.12/angular.js" data-semver="1.4.9"></script>
+    <script src="app.js"></script>
+  </head>
+
+  <body ng-controller="MainCtrl">
+ 
+ 
+    
+        <!--*******************************************
+                          logo part
+        ************************************************-->
+    <div style="position:fixed;">
+      <img id="logo" src="https://www.autocar.co.nz/_News/_2019Bin/nzta-logo.jpg">
+    <h1 style="padding:0px;
+      font-size:40px;
+      color:white;margin-left:2px;float:left;">TRACK</h1>
+    </div>
+    <!--***********************************************
+                      logo part ends
+    *******************************************************-->
+    
+    
+    
+    
+    <!--*******************************************************
+                  Sentences when enter the app.
+    **********************************************************-->
+    
+    <div ng-mousedown="startProject()" ng-show="falseHome" ng-model="home" id="home">
+      <h2 style="font-size:30 px;font-family:arial;color:white;text-align:center;">
+        NZTA TRACK
+      </h2>
+      <h2 style="font-size:50px;font-family:arial;color:white;text-align:center;">
+        Renew project data anytime.It's quick, easy and safe to do it online
+        </h3> </div>
+      <!--*******************************************************
+              end.    Sentences when enter the app.
+    **********************************************************-->
+        
+   
+    
+    <br><br><br><br>><br><br>
+    <br><br><br>
+    
+    
+    
+    
+    <!--Log in form-->
+    <div ng-show="falseLogin" ng-model="login" id="login">
+        <p>NZTA TRACK</p>
+      <div id="logform">
+        
+         Username:<br><input ng-model="inputUser" type="text" name="username"><Br>
+        Password:<br><input type="password" ng-model="inputPsw" name="password" ><br>
+       <h6 style="font-color:red;font-size:15px;"> {{feedback}} </h6><br>
+        <input type="checkbox" ng-click="save()" value"check">Remember password?<Br>
+        <br><input type="button" value="submit" ng-click="submitLogin()" style="background-color:pink;">     
+          <input type="button" value="Clear" ng-click="clear()" style="background-color:pink;"
+          ng-click="event"><br>
+          
+      </div>
+       
+      </div>
+      <!--Login form ends-->
+      
+      
+
+      
+      
+      <!--*******************************************************************************************************
+                                                  Road list (manager)
+      ************************************************************************************************************-->
+      
+      <div ng-show="falseRoadLManager" ng-model="roadlist" id="Roadinfo">
+       
+          <p>Road List</p>
+          <div id="lookuptxt" 
+          style="float:left;padding-left:20px;">
+            
+            <input type="text" value="Search for a road."
+            style="float:left;;height:20px;width:400px;padding:10px;">
+           <img src="https://banner2.kisspng.com/20180130/dvq/kisspng-magnifying-glass-magnifier-icon-a-magnifying-glass-5a706cd847c1a0.2449139415173173362939.jpg"
+            width="40px" height="40px" 
+            style="float:left;">
+            <input type="button" value="Search" style="border-radius:5px 5px 5px 5px;;width:70px;height:30px;background-color:pink;">
+            
+            <input type="button" value="Log Out" ng-click="logOut()" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;margin-left:300px;">
+           
+              
+             </div>
+             
+            <br><Br><br><Br> <div  id="road list"style="margin:50px;clear:both;width:1100px;height:400px;overflow-y:auto;background-color:lightgrey;">
+           
+
+
+            <table border="0" cellspacing="50" celllpadding='10'>
+
+<tr>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Identifier</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Official road code</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Type of road</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Section</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Named location</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">GPS location</th>
+</tr>
+<tr ng-repeat="Roads in myData" style="font-size:20px;" >
+<td> {{$index+1}} </td>
+<td> {{Roads.Code}} </td>
+<td> {{Roads.Type}} </td>
+<td> {{Roads.Section}} </td>
+<td> {{Roads.Location}} </td>
+<td> {{Roads.GPS}} </td>
+<td> <button ng-click="closeRoad()" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;">
+  {{close}}</button><br>
+
+<button ng-click="viewRoadManager(Roads)" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;">
+  view</button></td>
+
+<td><button ng-click="deleteRoads(roads)" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:red;">archieve</button><br>
+<input ng-click ="add(roads)" type="button" value="Add" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;">
+   </td>
+
+
+</table>
+          </div>
+        
+      </div>
+       <!--*******************************************************************************************************
+                                                  Road list ends (manager)
+      ************************************************************************************************************-->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      
+      <!--*******************************************************************************************************
+                                                  Road list (inspector)
+      ************************************************************************************************************-->
+      
+      <div ng-show="falseRoadLInspector" ng-model="roadlist" id="Roadinfo">
+       
+          <p>Road List</p>
+          <div id="lookuptxt" 
+          style="float:left;padding-left:20px;">
+            
+            <input type="text" value="Search for a road."
+            style="float:left;;height:20px;width:400px;padding:10px;">
+           <img src="https://banner2.kisspng.com/20180130/dvq/kisspng-magnifying-glass-magnifier-icon-a-magnifying-glass-5a706cd847c1a0.2449139415173173362939.jpg"
+            width="40px" height="40px" 
+            style="float:left;">
+            <input type="button" value="Search" style="border-radius:5px 5px 5px 5px;;width:70px;height:30px;background-color:pink;">
+            
+            <input type="button" value="Log Out" ng-click="logOut()" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;margin-left:300px;">
+           
+              
+             </div>
+             
+            <br><Br><br><Br> <div  id="road list"style="margin:50px;clear:both;width:1100px;height:400px;overflow-y:auto;background-color:lightgrey;">
+           
+
+
+            <table border="0" cellspacing="50" celllpadding='10'>
+
+<tr>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Identifier</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Official road code</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Type of road</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Section</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Named location</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">GPS location</th>
+</tr>
+<tr ng-repeat="Roads in myData" style="font-size:20px;" >
+<td> {{$index+1}} </td>
+<td> {{Roads.Code}} </td>
+<td> {{Roads.Type}} </td>
+<td> {{Roads.Section}} </td>
+<td> {{Roads.Location}} </td>
+<td> {{Roads.GPS}} </td>
+<td>
+<button ng-click="viewRoadInspector(Roads)" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;">
+  view</button></td>
+</tr>
+
+
+
+</table>
+          </div>
+        
+      </div>
+       <!--*******************************************************************************************************
+                                                  Road list ends (inspector)
+      ************************************************************************************************************-->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+     
+      <!-- Add Road Form   -->
+    <div ng-show="falseAddR" id="roadAdd" style="width:400px;height:300px;border:3px solid green;margin-left:600px;background-color:white;padding:120px;">
+    <p>Add Road</p>
+     <div id="roadForm" style="margin-left:20px;">
+     Road ID:<input ng-model="roadID"><br>
+     Road Code:<input ng-model="roadCode"><br>
+     Road Type:<input ng-model="roadType"><br>
+     Road Section:<input ng-model="roadSection"><br>
+     Road Location:<input ng-model="roadLocation"><br>
+     Road GPS:<input ng-model="roadGPS"></div><br>
+     <button ng-click="addRoad()">Add</button>
+     <button ng-click="returnRoadL()">Return</button></div>
+    </div>
+     
+     
+     <!-- Edit Project-->
+     <div ng-show="falseEditP" style="width:400px;height:500px;border:3px solid green;margin-left:600px;background-color:white;padding:120px;">
+       <p>Edit Project</p>
+       <div id="projectForm" style="margin-left:20px;">
+        
+         Project ID:<input ng-model="ProjectID"><BR>
+         Project Road:<input ng-model="ProjectRoad"><BR>
+         Project Name:<input ng-model="ProjectName"><BR>
+         Project Status:<input ng-model="ProjectStatus"><BR>
+         Project StartDate:<input ng-model="ProjectStartDate"><BR>
+         Project EndDate:<input ng-model="ProjectEndDate"><BR> 
+         Project Contractor:<input ng-model="ProjectContractor"><BR> 
+         <button ng-click="editProjectSubmit()">submit</button>
+       </div>
+     </div>
+     
+      <!-- Edit Project Inspector-->
+     <div ng-show="falseEditPInspector" style="width:400px;height:500px;border:3px solid green;margin-left:600px;background-color:white;padding:120px;">
+       <p>Edit Project</p>
+       <div id="projectForm" style="margin-left:20px;">
+        
+         Project ID:<input ng-model="ProjectID"><BR>
+         Project Road:<input ng-model="ProjectRoad"><BR>
+         Project Name:<input ng-model="ProjectName"><BR>
+         Project Status:<input ng-model="ProjectStatus"><BR>
+         Project StartDate:<input ng-model="ProjectStartDate"><BR>
+         Project EndDate:<input ng-model="ProjectEndDate"><BR> 
+         Project Contractor:<input ng-model="ProjectContractor"><BR> 
+         <button ng-click="editProjectSubmitInspector()">submit</button>
+       </div>
+     </div>
+     
+     
+    
+      <!-- Add Project Form   -->
+    <div ng-show="falseAddP"  style="width:400px;height:500px;border:3px solid green;margin-left:600px;background-color:white;padding:120px;">
+    <p>Add Project</p>
+     <div id="addProjectForm" style="margin-left:20px;">
+      Project ID:<input ng-model="ProjectID"><BR>
+         Project Road:<input ng-model="ProjectRoad"><BR>
+         Project Name:<input ng-model="ProjectName"><BR>
+         Project Status:<input ng-model="ProjectStatus"><BR>
+         Project StartDate:<input ng-model="ProjectStartDate"><BR>
+         Project EndDate:<input ng-model="ProjectEndDate"><BR> 
+         Project Contractor:<input ng-model="ProjectContractor"><BR> 
+     <button ng-click="SubmitProject()">Add</button>
+     <button ng-click="returnProject()">Return</button></div>
+    </div>
+     
+     <!-- Edit subcontractors-->
+<div ng-show="falseEditSub" style="width:400px;height:200px;border:3px solid green;margin-left:600px;background-color:white;padding:120px;">
+    Subcontractors:<input ng-model="ProjectSub"><br>
+    <button ng-click="SubmitSub()">Submit</button>
+<BR>
+    </div>
+     
+     
+       
+    <!--*****************************************************************************
+                                          Roadpage (manager)
+      ******************************************************************************-->
+    <div ng-show="falseRoadPManager"  ng-model="roadpage" style=" border:3px solid green;
+      background-color:white;
+      border-radius:10px 10px 10px 10px;
+      width:800px;
+      height:500px;
+      margin-left:550px;">
+      
+    <h4>Road {{RoadID}}</h4> 
+   
+    <input type="button" value="road project" ng-click="showProjectLManager()"style="background-color:pink;margin-left:300px;">
+    <input type="button" value="return" ng-click="returnRoadManager()" style="background-color:pink;margin-left:10px;">  
+      <div style="clear:both;border:1px solid green;margin-left:10px;width:700px;height:300px;">
+       
+       
+       
+       
+       
+       
+       
+       "ID": "1",<br>
+"Code": "SH1 South",<br>
+"Type": "State Highway",<br>
+"Section": "Kapiti",<br>
+"Location": "Kapiti Interchange",<br> "GPS": "Latitude 123, Longitude 456"
+        
+      </div>
+      
+    </div>
+    <!--*****************************************************************************
+                                          Roadpage ends (manager)
+      ******************************************************************************-->
+      
+      
+      
+      
+        <!--*****************************************************************************
+                                          Roadpage (Inspector)
+      ******************************************************************************-->
+    <div ng-show="falseRoadPInspector"  ng-model="roadpage" style=" border:3px solid green;
+      background-color:white;
+      border-radius:10px 10px 10px 10px;
+      width:800px;
+      height:500px;
+      margin-left:550px;">
+      
+    <h4>Road {{RoadID}}</h4> 
+   
+    <input type="button" value="road project" ng-click="showProjectLInspector()"style="background-color:pink;margin-left:300px;">
+    <input type="button" value="return" ng-click="returnRoadInspector()" style="background-color:pink;margin-left:10px;">  
+      <div style="clear:both;border:1px solid green;margin-left:10px;width:700px;height:300px;">
+       
+       
+       
+       
+       
+       
+       
+       "ID": "1",<br>
+"Code": "SH1 South",<br>
+"Type": "State Highway",<br>
+"Section": "Kapiti",<br>
+"Location": "Kapiti Interchange",<br> "GPS": "Latitude 123, Longitude 456"
+        
+      </div>
+      
+    </div>
+    <!--*****************************************************************************
+                                          Roadpage ends (Inspector)
+      ******************************************************************************-->
+   
+   
+   
+   
+  
+   
+  
+    
+    
+    
+    
+      
+      
+  <!--*************************************************************************************************
+                                            project list  (manager)
+  ****************************************************************************************************-->
+      <div ng-show="falseProjectLManager"  ng-model="projectlist" id="projectinfo">
+       
+          <p>Project List</p>
+          <div id="lookuptxt" 
+          style="float:left;padding-left:20px;">
+            
+            <input type="text" value="Search for a project."
+            style="float:left;;height:20px;width:400px;padding:10px;">
+           <img src="https://banner2.kisspng.com/20180130/dvq/kisspng-magnifying-glass-magnifier-icon-a-magnifying-glass-5a706cd847c1a0.2449139415173173362939.jpg"
+            width="40px" height="40px" 
+            style="float:left;">
+            <input type="button" value="Search" style="border-radius:5px 5px 5px 5px;;width:70px;height:30px;background-color:pink;">
+             <input type="button" value="return" ng-click="returnRoadPManager()" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;margin-left:300px;">
+              <input type="button" value="Log Out" ng-click="logOut()" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;margin-left:10px;">
+             
+             </div><br><Br><br><Br>
+          <div id="road list"style="margin-left:50px;clear:both;width:1120px;height:300px;overflow-y:auto;background-color:lightgrey;">
+           
+            <table border="0" cellspacing="50" celllpadding='10'>
+<tr>
+
+
+
+
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Identifier</th>
+
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Project Id</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Road</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Name</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Status</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Start date</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Finish date</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Contractor</th>
+
+
+<!--not shown...
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">List of works</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">List of problems</th>
+-->
+</tr>
+
+<tr ng-repeat="Projects in ProjectData" style="font-size:20px;">
+<td> {{$index+1}} </td>
+<td> {{Projects.ID}} </td>
+<td> {{Projects.Road}} </td>
+<td> {{Projects.Name}} </td>
+<td> {{Projects.Status}} </td>
+<td> {{Projects.StartDate}} </td>
+<td> {{Projects.EndDate}} </td>
+<td> {{Projects.Contractor}} </td>
+<td>
+ <button ng-click="viewProjectManager()" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;">
+  view</button></td>
+<td><button ng-click="deleteProjects(Projects)" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:red;">archieve</button><br>
+<input ng-click ="addProjects(projects)" type="button" value="Add" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;">
+   </td>
+</tr>
+
+</table>
+          </div>
+        
+      </div>
+       <!--*************************************************************************************************
+                                            project list Ends (manager)
+  ****************************************************************************************************-->
+ 
+ 
+ 
+ 
+ 
+       
+  <!--*************************************************************************************************
+                                            project list  (inspector)
+  ****************************************************************************************************-->
+      <div ng-show="falseProjectLInspector"  ng-model="projectlist" id="projectinfo">
+       
+          <p>Project List</p>
+          <div id="lookuptxt" 
+          style="float:left;padding-left:20px;">
+            
+            <input type="text" value="Search for a project."
+            style="float:left;;height:20px;width:400px;padding:10px;">
+           <img src="https://banner2.kisspng.com/20180130/dvq/kisspng-magnifying-glass-magnifier-icon-a-magnifying-glass-5a706cd847c1a0.2449139415173173362939.jpg"
+            width="40px" height="40px" 
+            style="float:left;">
+            <input type="button" value="Search" style="border-radius:5px 5px 5px 5px;;width:70px;height:30px;background-color:pink;">
+             <input type="button" value="return" ng-click="returnRoadPInspector()" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;margin-left:300px;">
+              <input type="button" value="Log Out" ng-click="logOut()" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;margin-left:10px;">
+             
+             </div><br><Br><br><Br>
+          <div id="road list"style="margin-left:50px;clear:both;width:1120px;height:300px;overflow-y:auto;background-color:lightgrey;">
+           
+            <table border="0" cellspacing="50" celllpadding='10'>
+<tr>
+
+
+
+
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Identifier</th>
+
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Project Id</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Road</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Name</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Status</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Start date</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Finish date</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Contractor</th>
+
+
+<!--not shown...
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">List of works</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">List of problems</th>
+-->
+</tr>
+
+<tr ng-repeat="Projects in ProjectData" style="font-size:20px;">
+<td> {{$index+1}} </td>
+<td> {{Projects.ID}} </td>
+<td> {{Projects.Road}} </td>
+<td> {{Projects.Name}} </td>
+<td> {{Projects.Status}} </td>
+<td> {{Projects.StartDate}} </td>
+<td> {{Projects.EndDate}} </td>
+<td> {{Projects.Contractor}} </td>
+<td>
+  <button ng-click="viewProjectInspector()" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;">
+  view</button></td>
+
+</tr>
+
+</table>
+          </div>
+        
+      </div>
+       <!--*************************************************************************************************
+                                            project list Ends (inspector)
+  ****************************************************************************************************-->
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <!--*******************************************************************************************************
+                                   Project list (Contractor)
+  *********************************************************************************************************-->
+  
+   <div ng-show="falseProjectLContractor"  ng-model="projectlist" id="projectinfo">
+       
+          <p>Project List</p>
+          <div id="lookuptxt" 
+          style="float:left;padding-left:20px;">
+            
+            <input type="text" value="Search for a project."
+            style="float:left;;height:20px;width:400px;padding:10px;">
+           <img src="https://banner2.kisspng.com/20180130/dvq/kisspng-magnifying-glass-magnifier-icon-a-magnifying-glass-5a706cd847c1a0.2449139415173173362939.jpg"
+            width="40px" height="40px" 
+            style="float:left;">
+            <input type="button" value="Search" style="border-radius:5px 5px 5px 5px;;width:70px;height:30px;background-color:pink;">
+             
+              <input type="button" value="Log Out" ng-click="logOut()" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;margin-left:10px;">
+             
+             </div><br><Br><br><Br>
+          <div id="road list"style="margin-left:50px;clear:both;width:1120px;height:300px;overflow-y:auto;background-color:lightgrey;">
+           
+            <table border="0" cellspacing="50" celllpadding='10'>
+<tr>
+
+
+
+
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Identifier</th>
+
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Project Id</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Road</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Name</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Status</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Start date</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Finish date</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">Contractor</th>
+
+
+<!--not shown...
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">List of works</th>
+<th style="font-size:20px;font-family:Arial;font-weight:bold;">List of problems</th>
+-->
+</tr>
+
+<tr ng-repeat="Projects in ProjectData" style="font-size:20px;">
+<td> {{$index+1}} </td>
+<td> {{Projects.ID}} </td>
+<td> {{Projects.Road}} </td>
+<td> {{Projects.Name}} </td>
+<td> {{Projects.Status}} </td>
+<td> {{Projects.StartDate}} </td>
+<td> {{Projects.EndDate}} </td>
+<td> {{Projects.Contractor}} </td>
+<td>
+ 
+  <button ng-click="viewProjectContractor(Projects)" style="border-radius:5px 5px 5px 5px;width:70px;height:30px;background-color:pink;">
+  view</button></td>
+  
+
+</tr>
+
+</table>
+          </div>
+        
+      </div>
+      
+      
+  <!--*******************************************************************************************************
+                                   Project list ends (Contractor)
+  *********************************************************************************************************--> 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+ <!--********************************************************************************************************
+                                               projectpage (Contractor)
+  ***********************************************************************************************************-->
+    <div ng-show="falseProjectPContractor" ng-model="projectpage" style=" border:3px solid green;
+      background-color:white;
+      border-radius:10px 10px 10px 10px;
+      width:800px;
+      height:700px;
+      margin-left:550px;">
+      
+    <h4>Project {{Pindex}}</h4> 
+    
+    
+    
+    <input type="button" ng-click="editSub()" value="Edit Subcontractors" style="background-color:pink;margin-left:300px;">
+    
+    
+    <input type="button" value="return" ng-click="returnProjectLContractor()"style="background-color:pink;margin-left:10px;">
+      <div style="float:left;border:1px solid green;margin-left:10px;width:400px;height:300px;overflow:auto;">
+       "ID": {{selectedProject.ID}},
+"Road": "1",<br>
+"Name": "Resurfacing",<br>
+"Status": "Closed",<br>
+"StartDate": "2019-12-12T00:00:00", <br>"EndDate": "2019-12-14T00:00:00", <br>"Contractor": "ABC Company", <br>"Problems": [
+{<br>
+"Author": "John D.",<br>
+"Text": "Safety Issues" }
+], <br>"Works": [
+{<br>
+"Type": "Resurfacing",<br> SubContractor: {{ProjectSub}} <br>"Status": "Done"<br></div>
+        
+        <div style="float:right;border:1px solid green;width:370px;height:300px;margin-left:5px;overflow:auto;">
+       
+      <ul ng-repeat="Comments in selectedProject.Comments">
+        <li style="font-weight:bold;">{{Comments.Author}}</li>
+        <li>{{Comments.Text}}</li>
+       </ul> 
+        John D :Work Completed.<br>
+       {{authorComments}}:{{theComments}};
+        </div>
+        
+       
+      <div style="clear:both;">
+        <br><br>
+      Leave a comment?<br>
+      <textarea ng-model="Message" name="comment" rows="5" cols="90"></textarea>
+     <input ng-click="submitMessage()" type="submit"><Br> 
+     Number of characters left: <span style="font-size:20px" ng-bind="left()"></span>
+    <br>
+    </div>
+
+ </div>
+    <!--********************************************************************************************************
+                                               projectpage ends (Contractor)
+  ***********************************************************************************************************--> 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+
+ 
+       
+    <!--**************************************************************************************
+                                          projectpage (manager)
+    **********************************************************************************************-->
+    <div ng-show="falseProjectPManager" ng-model="projectpage" style=" border:3px solid green;
+      background-color:white;
+      border-radius:10px 10px 10px 10px;
+      width:800px;
+      height:700px;
+      margin-left:550px;">
+      
+    <h4>Project {{Pindex}}</h4> 
+    <input type="button" value="Edit" ng-click="editProject()" style="background-color:pink;margin-left:300px;">
+     
+    <input type="button" value="return" ng-click="returnProjectLManager()"style="background-color:pink;margin-left:10px;">
+      <div style="float:left;border:1px solid green;margin-left:10px;width:400px;height:300px;overflow:auto;">
+      ID: {{ProjectID}},<br>
+      Road: {{ProjectRoad}},<br>
+      Name: {{ProjectName}},<br>
+     Status: {{ProjectStatus}},<br>
+    StartDate:{{ProjectStartDate}},<br>
+     EndDate: {{ProjectEndDate}}, <br>
+     Contractor: {{ProjectContractor}}, <br>
+     <div id="problemArea">
+       Problems: {{ProjectData.Problems.Author}}
+<br> {{ProjectData.Problems.Text}}
+"
+     </div>
+     <br>"Works": [
+{<br>
+"Type": "Resurfacing",<br> "SubContractors": "Local Inc; Danny Do", <br>"Status": "Done"<br></div>
+
+
+ <!--       <div style="float:right;border:1px solid green;width:370px;height:300px;margin-left:5px;overflow:auto;">-->
+       
+      
+
+ <!--</div>-->
+   <!--**************************************************************************************
+                                          projectpage ends (manager)
+    **********************************************************************************************-->
+      
+    </div>
+    
+    
+       
+    <!--**************************************************************************************
+                                          projectpage (Inspector)
+    **********************************************************************************************-->
+    <div ng-show="falseProjectPInspector" ng-model="projectpage" style=" border:3px solid green;
+      background-color:white;
+      border-radius:10px 10px 10px 10px;
+      width:800px;
+      height:700px;
+      margin-left:550px;">
+      
+    <h4>Project {{Pindex}}</h4> 
+    <input type="button" value="Edit" ng-click="editProjectInspector()" style="background-color:pink;margin-left:300px;">
+    <input type="button" value="Close problem" ng-click="closeProblem()"style="background-color:pink;margin-left:10px;">
+    <input type="button" value="Open problem" ng-click="openProblem()"style="background-color:pink;margin-left:10px;">
+    <input type="button" value="return" ng-click="returnProjectLInspector()"style="background-color:pink;margin-left:10px;">
+      <div style="float:left;border:1px solid green;margin-left:10px;width:400px;height:300px;overflow:auto;">
+       "ID": "1",
+"Road": "1",<br>
+"Name": "Resurfacing",<br>
+"Status": "Closed",<br>
+"StartDate": "2019-12-12T00:00:00", <br>"EndDate": "2019-12-14T00:00:00", <br>"Contractor": "ABC Company", <br>
+<div id="projectProblem" ng-model="projectProblem"> Problems"<span style="text-color:red;">({{problemStatus}})</span>: [
+{<br>
+"Author": "John D.",<br>
+"Text": "Safety Issues" }
+], </div>
+<br>"Works": [
+{<br>
+"Type": "Resurfacing",<br> "SubContractors": "Local Inc; Danny Do", <br>"Status": "Done"<br></div>
+        
+        <div style="float:right;border:1px solid green;width:370px;height:300px;margin-left:5px;overflow:auto;">
+       
+      <ul ng-repeat="Comments in ProjectData.Comments">
+        <li style="font-weight:bold;">{{Comments.Author}}</li>
+        <li>{{Comments.Text}}</li>
+       </ul> 
+       John D :Work Completed.<br>
+       {{authorComments}}:{{theComments}};
+        </div>
+        
+       
+      <div style="clear:both;">
+        <br><br>
+      Leave a comment?<br>
+      <textarea ng-model="Message" name="comment" rows="5" cols="90"></textarea>
+     <input ng-click="submitMessage()" type="submit"><Br> 
+     Number of characters left: <span style="font-size:20px" ng-bind="left()"></span>
+    <br>
+    </div>
+
+ </div>
+   <!--**************************************************************************************
+                                          projectpage ends (Inspector)
+    **********************************************************************************************-->
+      
+    </div>
+    
+    
+    
+    
+  </body>
+
+</html>

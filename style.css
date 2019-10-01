@@ -1,0 +1,72 @@
+/* Put your css in here */
+
+
+  /*Style sheet*/
+   #logo{
+     float:left;
+     width:150px;
+     height:70px;
+   }
+  
+    body{
+      background-image:url("https://images.pexels.com/photos/239520/pexels-photo-239520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-size:100%;
+    background-attachment:fixed;
+    }
+    
+    
+    #login{
+     
+      border:3px solid green;
+     
+      background-color:white;
+      border-radius:10px 10px 10px 10px;
+      width:800px;
+      height:500px;
+      margin-left:550px;
+      
+    }
+    #logform{
+      
+      margin-left:250px;
+      margin-right:50px;
+      padding:50px;
+      font-size:20px;
+    }
+    input[type="field"]{
+      width:900px;
+      height:300px;
+    }
+    #home{
+      padding:400px;
+      position:fixed;
+    }
+    #Roadinfo{
+     
+border:3px solid green;
+      background-color:white;
+      border-radius:10px 10px 10px 10px;
+      width:1200px;
+      height:700px;
+      margin-left:350px;
+      position:fixed;
+      
+    }
+    #projectinfo{
+      border:3px solid green;
+      background-color:white;
+      border-radius:10px 10px 10px 10px;
+      width:1200px;
+      height:600px;
+      margin-left:350px;
+    }
+   
+    p{
+      text-align:center;
+      font-size:50px;
+      color:pink;
+      background-color:darkgreen;
+      border:1px solid green;
+     
+    }
+
